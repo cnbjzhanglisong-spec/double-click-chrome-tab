@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "双击关标签",
+  "short_name": "双击关标签",
+  "version": "1.2.0",
+  "description": "在扩展侧栏中双击标签页即可关闭，也可双击网页空白处关闭当前标签。",
+  "minimum_chrome_version": "114",
+  "permissions": [
+    "tabs",
+    "storage",
+    "sidePanel",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "打开双击关标签",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "side_panel": {
+    "default_path": "sidepanel.html"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*",
+        "https://*/*",
+        "file:///*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_start"
+    }
+  ]
+}

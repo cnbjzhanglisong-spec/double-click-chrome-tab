@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>双击关闭 Chrome 标签 - 杀毒软件误报与放行说明</title>
+<style>
+  @page { size: A4; margin: 15mm 16mm 15mm 16mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    color: #1b2434;
+    font-family: "Microsoft YaHei", "Microsoft YaHei UI", "PingFang SC", sans-serif;
+    font-size: 10.2pt;
+    line-height: 1.62;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page { min-height: 260mm; position: relative; }
+  .page + .page { page-break-before: always; }
+  .hero {
+    border-radius: 14px;
+    padding: 18px 22px 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  }
+  .eyebrow { font-size: 8.5pt; letter-spacing: 1.8px; opacity: .8; margin-bottom: 5px; }
+  h1 { font-size: 22pt; margin: 0 0 5px; line-height: 1.25; }
+  .hero p { margin: 0; color: #dbeafe; font-size: 9.5pt; }
+  h2 {
+    margin: 19px 0 8px;
+    padding-left: 10px;
+    border-left: 4px solid #2563eb;
+    color: #172033;
+    font-size: 12.5pt;
+    line-height: 1.3;
+  }
+  h3 { margin: 9px 0 4px; font-size: 10.2pt; color: #1e3a8a; }
+  p { margin: 3px 0; }
+  ol, ul { margin: 3px 0 5px; padding-left: 18px; }
+  li { margin: 1px 0; }
+  .meta {
+    margin-top: 12px;
+    border: 1px solid #dbe4f0;
+    border-radius: 10px;
+    background: #f8fafc;
+    padding: 10px 14px;
+    font-size: 9.2pt;
+  }
+  .meta strong { color: #172033; }
+  .hash {
+    margin: 7px 0 0;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: #eef2f7;
+    color: #334155;
+    font-family: Consolas, monospace;
+    font-size: 8.3pt;
+    line-height: 1.45;
+    word-break: break-all;
+  }
+  .callout {
+    margin: 10px 0;
+    padding: 11px 14px;
+    border-radius: 9px;
+    border-left: 4px solid #f59e0b;
+    background: #fff8e8;
+    color: #5b4211;
+  }
+  .danger {
+    border-left-color: #dc2626;
+    background: #fff1f2;
+    color: #7f1d1d;
+  }
+  .success {
+    border-left-color: #16a34a;
+    background: #effbf3;
+    color: #14532d;
+  }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+  .card {
+    border: 1px solid #dbe4f0;
+    border-radius: 10px;
+    padding: 10px 12px;
+    background: #fff;
+  }
+  .card h3 { margin-top: 0; }
+  .small { color: #64748b; font-size: 8.8pt; }
+  .divider { height: 1px; background: #e2e8f0; margin: 14px 0; }
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding-top: 7px;
+    border-top: 1px solid #e2e8f0;
+    color: #94a3b8;
+    font-size: 8pt;
+    display: flex;
+    justify-content: space-between;
+  }
+  .tag {
+    display: inline-block;
+    margin-right: 5px;
+    padding: 1px 7px;
+    border-radius: 99px;
+    background: #dbeafe;
+    color: #1d4ed8;
+    font-size: 8pt;
+    font-weight: 700;
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <div class="hero">
+    <div class="eyebrow">WINDOWS SECURITY GUIDE</div>
+    <h1>杀毒软件误报与放行说明</h1>
+    <p>双击关闭 Chrome 标签 v1.1.8 · 适用于 Windows 10 / Windows 11</p>
+  </div>
+
+  <div class="meta">
+    <div><strong>适用程序：</strong>双击关闭Chrome标签.exe</div>
+    <div><strong>程序版本：</strong>1.1.8.0　　<strong>文件大小：</strong>83,456 字节</div>
+    <div><strong>SHA256：</strong></div>
+    <div class="hash">9308C113C58940DF308334C3216ACC5B9F258B99B3F7DE97903AD971953A6EAC</div>
+  </div>
+
+  <h2>一、为什么会被提示为木马</h2>
+  <p>本程序不联网、不上传数据，也不记录鼠标历史。出现“木马”提示，通常是安全软件根据程序行为做出的启发式判断。</p>
+  <ol>
+    <li>程序会监听鼠标双击，用来判断是否点在 Chrome 标签页上。</li>
+    <li>程序会模拟一次 Ctrl+W 按键，用来关闭当前标签页。</li>
+    <li>程序没有数字签名证书，安全软件无法确认发布者。</li>
+    <li>程序常驻系统托盘，并可选开机启动。</li>
+    <li>文件较新、使用人数少，云查杀容易给出高风险判断。</li>
+  </ol>
+  <div class="callout">
+    QVM、HEUR、Trojan.Generic 等提示通常属于启发式检测，不等于发现真实的已知病毒样本。
+  </div>
+
+  <h2>二、放行前先核对文件</h2>
+  <p>为防止文件在发送或下载中被替换，请先核对 SHA256。哈希一致才建议继续放行。</p>
+  <ol>
+    <li>在 EXE 所在文件夹空白处按住 Shift 并右键。</li>
+    <li>选择“在终端中打开”或“在此处打开 PowerShell 窗口”。</li>
+    <li>执行：<strong>Get-FileHash ".\双击关闭Chrome标签.exe" -Algorithm SHA256</strong></li>
+    <li>将结果与本说明第一页的 SHA256 对照。</li>
+  </ol>
+  <div class="grid">
+    <div class="card success">
+      <h3>哈希一致</h3>
+      <p>大概率是行为误报，可以按后续步骤添加文件信任。</p>
+    </div>
+    <div class="card danger">
+      <h3>哈希不一致</h3>
+      <p>不要运行或放行。请重新从可信来源复制文件。</p>
+    </div>
+  </div>
+
+  <div class="footer"><span>双击关闭 Chrome 标签</span><span>第 1 页 / 共 2 页</span></div>
+</section>
+
+<section class="page">
+  <h2>三、360 安全卫士放行方法</h2>
+  <h3>文件已被隔离</h3>
+  <ol>
+    <li>打开 360 安全卫士，点击“木马查杀”。</li>
+    <li>找到“恢复区”或“隔离区”。</li>
+    <li>找到“双击关闭Chrome标签.exe”。</li>
+    <li>选择“恢复”，再选择“添加信任”或“恢复并信任”。</li>
+    <li>重新运行 EXE。</li>
+  </ol>
+  <h3>文件尚未被隔离</h3>
+  <ol>
+    <li>打开 360 安全卫士的“设置”。</li>
+    <li>查找“信任区”或“文件信任”。</li>
+    <li>点击“添加文件”，只选择“双击关闭Chrome标签.exe”。</li>
+  </ol>
+  <div class="callout">不要关闭整个 360 防护，也不要排除整个磁盘或整个下载目录。</div>
+
+  <h2>四、Windows 安全中心放行方法</h2>
+  <h3>文件已被隔离</h3>
+  <ol>
+    <li>打开“Windows 安全中心”。</li>
+    <li>进入“病毒和威胁防护” > “保护历史记录”。</li>
+    <li>找到被拦截的“双击关闭Chrome标签.exe”。</li>
+    <li>点击“操作”，选择“允许在设备上”或“还原”。</li>
+  </ol>
+  <h3>文件尚未被隔离</h3>
+  <ol>
+    <li>进入“病毒和威胁防护” > “病毒和威胁防护设置” > “管理设置”。</li>
+    <li>找到“排除项”，点击“添加或删除排除项”。</li>
+    <li>点击“添加排除项” > “文件”。</li>
+    <li>只选择“双击关闭Chrome标签.exe”，确认后重新运行程序。</li>
+  </ol>
+  <p class="small">Windows 可能要求管理员确认，这是正常现象。</p>
+
+  <h2>五、安全提醒与撤销方法</h2>
+  <ul>
+    <li>只放行“双击关闭Chrome标签.exe”这一个文件。</li>
+    <li>不要关闭整个杀毒软件，不要排除整个磁盘或用户目录。</li>
+    <li>哈希不一致时不要放行。</li>
+    <li>不想添加信任时，可以改用 Chrome 扩展版本。</li>
+  </ul>
+  <p><span class="tag">360</span>进入信任区，找到该 EXE，选择移除或取消信任。</p>
+  <p><span class="tag">Windows</span>进入“病毒和威胁防护设置” > “排除项” > “添加或删除排除项”，删除该文件排除项。</p>
+
+  <div class="divider"></div>
+  <div class="meta">
+    <div><strong>常见问题：</strong>换一个 AI 模型能否解决报毒？</div>
+    <div>不能。报毒来自安全软件对 EXE 行为和文件信誉的判断，与生成代码的模型无关。</div>
+  </div>
+
+  <div class="footer"><span>说明版本 1.1.8 · 2026-10-31</span><span>第 2 页 / 共 2 页</span></div>
+</section>
+</body>
+</html>
+
