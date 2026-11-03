@@ -73,4 +73,3 @@ foreach ($size in @(16, 32, 48, 128)) {
 }
 
 Write-Output "Generated icons in $OutputDirectory"
-

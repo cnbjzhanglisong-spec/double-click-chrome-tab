@@ -932,4 +932,3 @@ namespace DoubleClickChromeTab
         }
     }
 }
-

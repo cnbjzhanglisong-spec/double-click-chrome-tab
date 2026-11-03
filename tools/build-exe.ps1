@@ -168,4 +168,3 @@ $versionInfo = $output.VersionInfo
 Write-Output "已生成：$($output.FullName)"
 Write-Output "大小：$($output.Length) 字节"
 Write-Output "版本：$($versionInfo.FileVersion)"
-
